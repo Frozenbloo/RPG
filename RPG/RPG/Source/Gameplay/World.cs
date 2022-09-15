@@ -115,6 +115,8 @@ namespace RPG
             Vector2 tempPosition = (Vector2)INFO;
 
             #region Screen Scrolling
+            //This should make it so the middle 20% of the screen is a deadzone, and the rest of the screen makes the camera move, although futher testing is required to double check that it 
+            //actually works
             if (tempPosition.X < -offset.X + (Globals.screenWidth * .4f))
             {
                 offset = new Vector2(offset.X + user.player.speed, offset.Y);
@@ -140,12 +142,13 @@ namespace RPG
         public virtual void Draw(Vector2 OFFSET)
         {   
             user.Draw(offset);
-            aICharacter.Draw(offset);
 
             for (int i = 0; i < projectiles.Count; i++)
             {
                 projectiles[i].Draw(offset);
             }
+
+            aICharacter.Draw(offset);
 
             //Keep at bottom to draw on top
             ui.Draw(this);

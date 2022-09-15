@@ -37,7 +37,7 @@ namespace RPG
 
         public void Draw(World World)
         {
-            string tempStr = "Internal Prototype";
+            string tempStr = "Internal Prototype v0.0.1";
             Vector2 strDimensions = font.MeasureString(tempStr);
             Globals.spriteBatch.DrawString(font, tempStr, new Vector2(Globals.screenWidth/2 - (strDimensions.X/2), Globals.screenHeight - 49), Color.Black);
 
