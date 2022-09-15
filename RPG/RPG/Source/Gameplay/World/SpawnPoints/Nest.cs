@@ -41,6 +41,10 @@ namespace RPG
             {
                 tempMob = new Spider(new Vector2(position.X, position.Y), ownerId);
             }
+            else if (randNum < 8)
+            {
+                tempMob = new Ghost(new Vector2(position.X, position.Y), ownerId);
+            }
             if (tempMob != null)
             {
                 GameGlobals.PassMob(tempMob);
