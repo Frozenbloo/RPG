@@ -9,6 +9,10 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <Version>0.0.1</Version>
+    <Authors>Tom Blomer</Authors>
+    <Company>Frozenbloo Studios</Company>
+    <PackageProjectUrl>http://www.frozenbloo.com</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />

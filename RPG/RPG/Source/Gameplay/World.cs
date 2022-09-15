@@ -22,7 +22,6 @@ namespace RPG
     {
         public Vector2 offset;
 
-
         public UI ui;
 
         public User user;

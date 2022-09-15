@@ -22,7 +22,7 @@ namespace RPG
 
         public Spider(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Spider", POS, new Vector2(55,55), OWNERID)
         {
-            speed = 1f;
+            speed = 0.75f;
 
             hp = 3;
             hpMax = hp;
