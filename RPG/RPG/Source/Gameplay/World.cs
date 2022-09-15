@@ -47,6 +47,7 @@ namespace RPG
 
             ui = new UI();
         }
+
         public virtual void Update()
         {
             if (!user.player.isDead)

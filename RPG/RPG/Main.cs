@@ -83,8 +83,6 @@ namespace RPG
 
             gameplay.Draw();
 
-
-
             cursor.Draw(new Vector2(Globals.mouse.newMousePos.X, Globals.mouse.newMousePos.Y), new Vector2(0, 0), Color.White);
             Globals.spriteBatch.End();
 

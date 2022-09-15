@@ -22,7 +22,6 @@ namespace RPG
 
         public QuantityDisplayBar hpBar;
 
-
         public UI()
         {
             font = Globals.content.Load<SpriteFont>("Fonts\\KenneyPixel");
