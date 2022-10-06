@@ -34,7 +34,6 @@ namespace RPG
         {
             position += Globals.RadialMovement(PLAYER.position, position, speed);
 
-
             if (Globals.GetDistance(position, PLAYER.position) < 35)
             {
                 PLAYER.getHit(1);

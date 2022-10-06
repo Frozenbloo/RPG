@@ -14,7 +14,6 @@ namespace RPG
 
         Gameplay gameplay;
 
-        //Mouse
         Basic2D cursor;
 
         public Main()
@@ -28,11 +27,14 @@ namespace RPG
         {
             // TODO: Add your initialization logic here
 
-            Globals.screenWidth = 1600; //800
-            Globals.screenHeight = 900; //500
+            Globals.screenWidth = 1600; //800  1600
+            Globals.screenHeight = 900; //500  900
 
             graphics.PreferredBackBufferWidth = Globals.screenWidth;
             graphics.PreferredBackBufferHeight = Globals.screenHeight;
+
+            /** To add a fullscreen option later on in development **/
+            //graphics.IsFullScreen = true;
 
             graphics.ApplyChanges();
 
@@ -56,11 +58,8 @@ namespace RPG
 
         protected override void Update(GameTime gameTime)
         {
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
 
             Globals.gameTime = gameTime;
             Globals.keyboard.Update();
@@ -76,8 +75,6 @@ namespace RPG
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
 
             Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 

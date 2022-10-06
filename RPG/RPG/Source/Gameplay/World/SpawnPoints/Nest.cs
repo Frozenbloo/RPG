@@ -29,6 +29,8 @@ namespace RPG
             base.Update(OFFSET);
         }
 
+
+        //Flesh out more to add more variation to enemy spawning depending on the area in the maze
         public override void SpawnMob()
         {
             int randNum = Globals.random.Next(0, 10 + 1);

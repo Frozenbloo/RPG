@@ -50,7 +50,7 @@ namespace RPG
 
         public virtual void Update()
         {
-            if (!user.player.isDead)
+            if (!user.player.isDead/**user.player.isDead**/)
             {
                 user.Update(aICharacter, offset);
                 aICharacter.Update(user, offset);
@@ -141,7 +141,6 @@ namespace RPG
 
         public virtual void Draw(Vector2 OFFSET)
         {   
-            user.Draw(offset);
 
             for (int i = 0; i < projectiles.Count; i++)
             {
@@ -149,6 +148,8 @@ namespace RPG
             }
 
             aICharacter.Draw(offset);
+
+            user.Draw(offset);
 
             //Keep at bottom to draw on top
             ui.Draw(this);
