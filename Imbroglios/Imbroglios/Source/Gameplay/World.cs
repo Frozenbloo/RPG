@@ -45,7 +45,7 @@ namespace Imbroglios
 
             offset = new Vector2(0, 0);
 
-            ui = new UI();
+            ui = new UI(ResetWorld);
         }
 
         public virtual void Update()

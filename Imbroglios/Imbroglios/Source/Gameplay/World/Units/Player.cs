@@ -22,7 +22,7 @@ namespace Imbroglios
         {
             speed = 2.5f;
 
-            hp = 10;
+            hp = 1;
             hpMax = hp;
         }
 

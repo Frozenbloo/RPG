@@ -37,6 +37,24 @@ namespace Imbroglios
 
         }
 
+        public virtual bool Hover(Vector2 OFFSET)
+        {
+            return HoverIMG(OFFSET);
+        }
+
+        //Extremely basic hover function, but is less resource intensive compared to pixel hover checking.
+        public virtual bool HoverIMG(Vector2 OFFSET)
+        {
+            Vector2 mousePos = new Vector2(Globals.mouse.newMousePos.X, Globals.mouse.newMousePos.Y);
+
+            if (mousePos.X >= (position.X + OFFSET.X)-dimensions.X/2 && mousePos.X <= (position.X + OFFSET.X) - dimensions.X / 2 && mousePos.Y >= (position.Y + OFFSET.Y) - dimensions.Y / 2 && mousePos.Y <= (position.Y + OFFSET.Y) - dimensions.Y / 2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public virtual void Draw(Vector2 OFFSET)
         {
             //Checks to ensure that texture has loaded before drawing to screen

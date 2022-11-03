@@ -25,6 +25,8 @@
   <ItemGroup>
     <Folder Include="Content\bin\DesktopGL\Content\" />
     <Folder Include="Content\bin\Windows\Content\" />
+    <Folder Include="Content\Effects\" />
+    <Folder Include="Content\obj\DesktopGL\net6.0\Content\Effects\" />
     <Folder Include="Content\obj\Windows\Content\" />
     <Folder Include="Content\obj\Windows\net3.1\Content\" />
   </ItemGroup>

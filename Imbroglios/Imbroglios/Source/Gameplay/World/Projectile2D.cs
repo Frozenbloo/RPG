@@ -79,6 +79,13 @@ namespace Imbroglios
 
         public override void Draw(Vector2 OFFSET)
         {
+            Globals.normalEffect.Parameters["xSize"].SetValue((float)myModel.Bounds.Width);
+            Globals.normalEffect.Parameters["ySize"].SetValue((float)myModel.Bounds.Height);
+            Globals.normalEffect.Parameters["xDraw"].SetValue((float)((int)dimensions.X));
+            Globals.normalEffect.Parameters["yDraw"].SetValue((float)((int)dimensions.Y));
+            Globals.normalEffect.Parameters["filterColor"].SetValue(Color.White.ToVector4());
+            Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
+
             base.Draw(OFFSET);
         }
 

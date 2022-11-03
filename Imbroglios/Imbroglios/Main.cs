@@ -50,6 +50,8 @@ namespace Imbroglios
 
             cursor = new Basic2D("2D\\Misc\\cursorHand_grey", new Vector2(0, 0), new Vector2(28, 28));
 
+            Globals.normalEffect = Globals.content.Load<Effect>("Effects\\NormalFlat");
+
             Globals.keyboard = new TBKeyboard();
             Globals.mouse = new TBMouseControl();
 
@@ -75,7 +77,7 @@ namespace Imbroglios
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            //Slightly less efficient but allows the anti-alias shader to run properly.
             Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
             gameplay.Draw();

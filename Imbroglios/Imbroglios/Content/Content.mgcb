@@ -145,6 +145,12 @@
 /processorParam:TextureFormat=Color
 /build:2D/Units/Mobs/Spider.png
 
+#begin Effects/NormalFlat.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/NormalFlat.fx
+
 #begin Fonts/KenneyPixel.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

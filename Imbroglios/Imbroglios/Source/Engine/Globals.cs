@@ -28,6 +28,7 @@ namespace Imbroglios
         public static ContentManager content;
         public static SpriteBatch spriteBatch;
 
+        public static Effect normalEffect;
 
         public static TBKeyboard keyboard;
         public static TBMouseControl mouse;
