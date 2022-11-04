@@ -24,10 +24,13 @@ namespace Imbroglios
 
         World world;
 
-        public Gameplay()
+        PassObject ChangeGameState;
+
+        public Gameplay(PassObject changeGameState)
         {
             playState = 0;
 
+            ChangeGameState = changeGameState;
             ResetWorld(null);
         }
 
@@ -41,7 +44,7 @@ namespace Imbroglios
 
         public virtual void ResetWorld(Object INFO)
         {
-            world = new World(ResetWorld);
+            world = new World(ResetWorld, ChangeGameState);
         }
 
         public virtual void Draw()

@@ -1,7 +1,19 @@
 ﻿#region Using
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Xml.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
 #endregion
 
 namespace Imbroglios
@@ -13,6 +25,7 @@ namespace Imbroglios
         public float delta;
 
         Gameplay gameplay;
+        MainMenu menu;
 
         Basic2D cursor;
 
@@ -54,8 +67,8 @@ namespace Imbroglios
 
             Globals.keyboard = new TBKeyboard();
             Globals.mouse = new TBMouseControl();
-
-            gameplay = new Gameplay();
+            menu = new MainMenu(ChangeGameState, ExitGame);
+            gameplay = new Gameplay(ChangeGameState);
         }
 
         protected override void Update(GameTime gameTime)
@@ -64,11 +77,30 @@ namespace Imbroglios
             Globals.keyboard.Update();
             Globals.mouse.Update();
 
-            gameplay.Update();
+            if (Globals.gameState == 0)
+            {
+                menu.Update();
+            }
+            else if (Globals.gameState == 1)
+            {
+                gameplay.Update();
+            }
 
             Globals.keyboard.UpdateOld();
             Globals.mouse.UpdateOld();
             base.Update(gameTime);
+        }
+
+        //Changes the current gamestate
+        public virtual void ChangeGameState(object INFO)
+        {
+            Globals.gameState = Convert.ToInt32(INFO);
+        }
+
+        //Closes the Game, Also calls the dispose function and runs on every version
+        public virtual void ExitGame(object INFO)
+        {
+            System.Environment.Exit(0);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -77,7 +109,14 @@ namespace Imbroglios
             //Slightly less efficient but allows the anti-alias shader to run properly.
             Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp);
 
-            gameplay.Draw();
+            if (Globals.gameState == 0)
+            {
+                menu.Draw();
+            }
+            else if (Globals.gameState == 1)
+            {
+                gameplay.Draw();
+            }
 
             Globals.normalEffect.Parameters["xSize"].SetValue((float)cursor.myModel.Bounds.Width);
             Globals.normalEffect.Parameters["ySize"].SetValue((float)cursor.myModel.Bounds.Height);

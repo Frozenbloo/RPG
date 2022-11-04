@@ -32,6 +32,7 @@ namespace Imbroglios
 
         public Button2D(string filePATH, Vector2 POS, Vector2 DIMS, string FONTPATH, string TEXT, PassObject BUTTONCLICKED, object INFO) : base(filePATH, POS, DIMS)
         {
+            info = INFO;
             text = TEXT;
             ButtonClicked = BUTTONCLICKED;
             //If the font is null we don't need to load a font

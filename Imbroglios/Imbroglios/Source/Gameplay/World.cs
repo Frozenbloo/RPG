@@ -31,7 +31,7 @@ namespace Imbroglios
 
         PassObject ResetWorld;
 
-        public World(PassObject RESETWORLD)
+        public World(PassObject RESETWORLD, PassObject CHANGEGAMESTATE)
         {
             ResetWorld = RESETWORLD;
 
@@ -47,7 +47,7 @@ namespace Imbroglios
 
             offset = new Vector2(0, 0);
 
-            ui = new UI(ResetWorld);
+            ui = new UI(ResetWorld, CHANGEGAMESTATE);
         }
 
         public virtual void Update()

@@ -20,15 +20,16 @@ namespace Imbroglios
     {
         public SpriteFont font;
 
-        public Button2D resetBtn;
+        public Button2D resetBtn, menuBtn;
 
         public QuantityDisplayBar hpBar;
 
-        public UI(PassObject RESET)
+        public UI(PassObject RESET, PassObject CHANGEGAMESTATE)
         {
             font = Globals.content.Load<SpriteFont>("Fonts\\KenneyPixel");
 
             resetBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\KenneyPixel", "Reset", RESET, null);
+            menuBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\KenneyPixel", "Quit to Main Menu", CHANGEGAMESTATE, 0);
 
             hpBar = new QuantityDisplayBar(new Vector2(208, 20), 0, Color.Red);
         }
@@ -39,6 +40,11 @@ namespace Imbroglios
             if (World.user.player.isDead)
             {
                 resetBtn.Update(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2 + 100));
+            }
+
+            if (GameGlobals.isPaused)
+            {
+                menuBtn.Update(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2 + 100));
             }
         }
 
@@ -70,6 +76,7 @@ namespace Imbroglios
                 tempStr = "Game Paused";
                 strDimensions = font.MeasureString(tempStr);
                 Globals.spriteBatch.DrawString(font, tempStr, new Vector2(Globals.screenWidth / 2 - (strDimensions.X / 2), Globals.screenHeight / 2), Color.Black);
+                menuBtn.Draw(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2 + 100));
             }
 
             hpBar.Draw(new Vector2(20, Globals.screenHeight - 40));
