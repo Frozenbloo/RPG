@@ -29,7 +29,7 @@ namespace Imbroglios
             font = Globals.content.Load<SpriteFont>("Fonts\\KenneyPixel");
 
             resetBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\KenneyPixel", "Reset", RESET, null);
-            menuBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\KenneyPixel", "Quit to Main Menu", CHANGEGAMESTATE, 0);
+            menuBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(220, 32), "Fonts\\KenneyPixel", "Quit to Main Menu", CHANGEGAMESTATE, 0);
 
             hpBar = new QuantityDisplayBar(new Vector2(208, 20), 0, Color.Red);
         }

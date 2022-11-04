@@ -45,7 +45,7 @@ namespace Imbroglios {
         {
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].Update(new Vector2(340, 600 + 60 * i));
+                buttons[i].Update(new Vector2(80, 800 + 60 * i));
             }
         }
 
@@ -55,7 +55,7 @@ namespace Imbroglios {
 
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].Draw(new Vector2(340, 600 + 60 * i));
+                buttons[i].Draw(new Vector2(80, 800 + 60 * i));
             }
         }
     }

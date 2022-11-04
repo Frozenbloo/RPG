@@ -20,7 +20,7 @@ namespace Imbroglios
 
         public TBTimer spawnTimer;
 
-        public Spider(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Spider", POS, new Vector2(55,55), OWNERID)
+        public Spider(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Spider", POS, new Vector2(55,55), new Vector2(1, 1), OWNERID)
         {
             speed = 0.75f;
 
@@ -45,7 +45,7 @@ namespace Imbroglios
 
         public virtual void SpawnSpiderEgg()
         {
-            GameGlobals.PassSpawnPoint(new SpiderEgg(new Vector2(position.X, position.Y), new Vector2(35,35), ownerId));
+            GameGlobals.PassSpawnPoint(new SpiderEgg(new Vector2(position.X, position.Y), new Vector2(35,35), new Vector2(1, 1), ownerId));
         }
 
         public override void Draw(Vector2 OFFSET)

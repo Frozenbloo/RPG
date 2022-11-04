@@ -17,7 +17,7 @@ namespace Imbroglios
 {
     public class Spiderling : Mob
     {
-        public Spiderling(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Spider", POS, new Vector2(20,20), OWNERID)
+        public Spiderling(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Spider", POS, new Vector2(20,20), new Vector2(1, 1), OWNERID)
         {
             speed = 2.5f;
         }

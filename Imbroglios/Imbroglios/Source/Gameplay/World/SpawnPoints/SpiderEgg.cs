@@ -19,7 +19,7 @@ namespace Imbroglios
     {
         int maxSpawns, totalSpawns;
 
-        public SpiderEgg(Vector2 POS, Vector2 DIMS, int OWNERID) : base("2D\\SpawnPoints\\Egg", POS, DIMS, OWNERID)
+        public SpiderEgg(Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base("2D\\SpawnPoints\\Egg", POS, DIMS, FRAMES, OWNERID)
         {
             totalSpawns = 0;
             maxSpawns = 3;

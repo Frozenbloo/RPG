@@ -20,15 +20,15 @@ namespace Imbroglios
     {
         public float rotation;
 
-        public Vector2 position, dimensions;
+        public Vector2 position, dimensions, frameSize;
 
         public Texture2D myModel;
 
         public Basic2D(string filePATH, Vector2 POS, Vector2 DIMS)
         {
-            position = POS;
-            dimensions = DIMS;
-
+            position = new Vector2(POS.X, POS.Y);
+            dimensions = new Vector2(DIMS.X, DIMS.Y);
+            rotation = 0f;
             myModel = Globals.content.Load<Texture2D>(filePATH);
         }
 

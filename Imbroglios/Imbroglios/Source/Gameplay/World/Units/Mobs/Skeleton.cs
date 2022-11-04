@@ -18,7 +18,7 @@ namespace Imbroglios
     public class Skeleton : Mob
     {
 
-        public Skeleton(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Skeleton", POS, new Vector2(40,40), OWNERID)
+        public Skeleton(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Skeleton", POS, new Vector2(40,40), new Vector2(1, 1), OWNERID)
         {
             speed = 1f;
         }

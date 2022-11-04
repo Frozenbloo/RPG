@@ -18,7 +18,7 @@ namespace Imbroglios
     public class Ghost : Mob
     {
 
-        public Ghost(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Ghost", POS, new Vector2(40,40), OWNERID)
+        public Ghost(Vector2 POS, int OWNERID) : base("2D\\Units\\Mobs\\Ghost", POS, new Vector2(40,40), new Vector2(1, 1), OWNERID)
         {
             speed = 7.5f;
             hp = 1;

@@ -19,7 +19,7 @@ namespace Imbroglios
     {
 
 
-        public Nest(Vector2 POS, Vector2 DIMS, int OWNERID) : base("2D\\SpawnPoints\\Nest", POS, DIMS, OWNERID)
+        public Nest(Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base("2D\\SpawnPoints\\Nest", POS, DIMS, FRAMES, OWNERID)
         {
 
         }

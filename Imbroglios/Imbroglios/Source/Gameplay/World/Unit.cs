@@ -18,7 +18,7 @@ namespace Imbroglios
     public class Unit : AttackableObject
     {
 
-        public Unit(string filePATH, Vector2 POS, Vector2 DIMS, int OWNERID) : base(filePATH, POS, DIMS, OWNERID)
+        public Unit(string filePATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base(filePATH, POS, DIMS, FRAMES, OWNERID)
         {
 
         }

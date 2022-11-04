@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Imbroglios
 {
-    public class AttackableObject : Basic2D
+    public class AttackableObject : Animated2D
     {
         public bool isDead;
 
@@ -23,7 +23,7 @@ namespace Imbroglios
 
         public float speed, hitDistance, hp, hpMax;
 
-        public AttackableObject(string filePATH, Vector2 POS, Vector2 DIMS, int OWNERID) : base(filePATH, POS, DIMS)
+        public AttackableObject(string filePATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base(filePATH, POS, DIMS, FRAMES, Color.White)
         {
             ownerId = OWNERID;
             isDead = false;

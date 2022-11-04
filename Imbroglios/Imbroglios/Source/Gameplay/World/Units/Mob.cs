@@ -18,7 +18,7 @@ namespace Imbroglios
     public class Mob : Unit
     {
 
-        public Mob(string filePATH, Vector2 POS, Vector2 DIMS, int OWNERID) : base(filePATH, POS, DIMS, OWNERID)
+        public Mob(string filePATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base(filePATH, POS, DIMS, FRAMES, OWNERID)
         {
             speed = 2f;
         }
