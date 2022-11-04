@@ -18,6 +18,8 @@ namespace Imbroglios
 {
     public class GameGlobals
     {
+        public static bool isPaused = false;
+
         public static PassObject PassProjectile, PassMob, PassSpawnPoint, CheckScreenScroll;
     }
 }

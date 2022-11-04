@@ -40,6 +40,8 @@ namespace Imbroglios
             GameGlobals.CheckScreenScroll = CheckScreenScroll;
             GameGlobals.PassSpawnPoint = AddSpawnPoint;
 
+            GameGlobals.isPaused = false;
+
             user = new User(1);
             aICharacter = new AICharacter(2);
 
@@ -50,7 +52,7 @@ namespace Imbroglios
 
         public virtual void Update()
         {
-            if (!user.player.isDead/**user.player.isDead**/)
+            if (!user.player.isDead && !GameGlobals.isPaused)
             {
                 user.Update(aICharacter, offset);
                 aICharacter.Update(user, offset);
@@ -71,6 +73,11 @@ namespace Imbroglios
                 {
                     ResetWorld(null);
                 }
+            }
+
+            if (Globals.keyboard.GetSinglePress("Escape"))
+            {
+                GameGlobals.isPaused = !GameGlobals.isPaused;
             }
             //Keep at bottom to draw on top
             ui.Update(this);

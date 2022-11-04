@@ -78,5 +78,27 @@ namespace Imbroglios
 
             }
         }
+
+        public bool GetSinglePress(string KEY)
+        {
+            for (int i = 0; i < pressedKeys.Count; i++)
+            {
+                bool isIn = false;
+
+                for (int j = 0; j < previousPressedKeys.Count; j++)
+                {
+                    if (pressedKeys[i].key == previousPressedKeys[j].key)
+                    {
+                        isIn = true;
+                        break;
+                    }
+                }
+                if  (!isIn && (pressedKeys[i].key == KEY || pressedKeys[i].print == KEY))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

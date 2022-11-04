@@ -36,11 +36,9 @@ namespace Imbroglios
         public void Update(World World)
         {
             hpBar.Update(World.user.player.hp, World.user.player.hpMax);
-
             if (World.user.player.isDead)
             {
                 resetBtn.Update(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2 + 100));
-                Console.WriteLine(resetBtn.isHovered);
             }
         }
 
@@ -67,8 +65,14 @@ namespace Imbroglios
                 resetBtn.Draw(new Vector2(Globals.screenWidth / 2, Globals.screenHeight/2 + 100));
             }
 
-            hpBar.Draw(new Vector2(20, Globals.screenHeight - 40));
+            if (GameGlobals.isPaused)
+            {
+                tempStr = "Game Paused";
+                strDimensions = font.MeasureString(tempStr);
+                Globals.spriteBatch.DrawString(font, tempStr, new Vector2(Globals.screenWidth / 2 - (strDimensions.X / 2), Globals.screenHeight / 2), Color.Black);
+            }
 
+            hpBar.Draw(new Vector2(20, Globals.screenHeight - 40));
         }
     }
 }
