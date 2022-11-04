@@ -101,6 +101,12 @@ namespace Imbroglios
                 tempColour = hoverColour;
             }
 
+            Globals.normalEffect.Parameters["xSize"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["ySize"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["xDraw"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["yDraw"].SetValue(1.0f);
+            Globals.normalEffect.Parameters["filterColor"].SetValue(tempColour.ToVector4());
+            Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
 
             base.Draw(OFFSET);
 

@@ -70,7 +70,7 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR
 
 
 
-	return color * filterColor;
+	return color * filterColor * input.Color;
 }
 
 technique Technique1

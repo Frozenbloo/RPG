@@ -67,13 +67,6 @@ namespace Imbroglios
                     }
                 }
             }
-            else
-            {
-                if (Globals.keyboard.GetPress("Enter"))
-                {
-                    ResetWorld(null);
-                }
-            }
 
             if (Globals.keyboard.GetSinglePress("Escape"))
             {
