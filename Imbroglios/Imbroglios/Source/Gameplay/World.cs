@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Security.AccessControl;
 
 #endregion
 
@@ -26,6 +27,8 @@ namespace Imbroglios
 
         public User user;
         public AICharacter aICharacter;
+
+        public SquareGrid grid;
 
         public List<Projectile2D> projectiles = new List<Projectile2D>();
 
@@ -46,6 +49,8 @@ namespace Imbroglios
             aICharacter = new AICharacter(2);
 
             offset = new Vector2(0, 0);
+
+            grid = new SquareGrid(new Vector2(25, 25), new Vector2(-500, -500), new Vector2(Globals.screenWidth + 1000, Globals.screenHeight + 1000));
 
             ui = new UI(ResetWorld, CHANGEGAMESTATE);
         }
@@ -72,6 +77,17 @@ namespace Imbroglios
             {
                 GameGlobals.isPaused = !GameGlobals.isPaused;
             }
+
+            if (Globals.keyboard.GetSinglePress("G"))
+            {
+                grid.showGrid = !grid.showGrid;
+            }
+
+            if (grid != null)
+            {
+                grid.Update(offset);
+            }
+
             //Keep at bottom to draw on top
             ui.Update(this);
         }
@@ -142,6 +158,7 @@ namespace Imbroglios
 
         public virtual void Draw(Vector2 OFFSET)
         {
+            grid.DrawGrid(offset);
 
             for (int i = 0; i < projectiles.Count; i++)
             {
