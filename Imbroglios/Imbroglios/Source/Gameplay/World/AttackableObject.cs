@@ -35,7 +35,7 @@ namespace Imbroglios
             hitDistance = 35.0f;
         }
 
-        public virtual void Update(Vector2 OFFSET, Character ENEMY)
+        public virtual void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
         {
             base.Update(OFFSET);
         }

@@ -24,9 +24,9 @@ namespace Imbroglios
 
         }
 
-        public override void Update(Vector2 OFFSET)
+        public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
         {
-            base.Update(OFFSET);
+            base.Update(OFFSET, ENEMY, GRID);
         }
 
 

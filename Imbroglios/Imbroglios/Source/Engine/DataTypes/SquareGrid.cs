@@ -50,6 +50,11 @@ namespace Imbroglios
             currentHoverSlot = GetSlotFromPixel(new Vector2(Globals.mouse.newMousePos.X, Globals.mouse.newMousePos.Y), OFFSET);
         }
 
+        public virtual Vector2 GetPosFromLoc(Vector2 LOCATION)
+        {
+            return physicalStartPos + new Vector2((int)LOCATION.X * slotDims.X, (int)LOCATION.Y * slotDims.Y);
+        }
+
         public virtual GridLocation GetSlotFromLocation(Vector2 LOCATION)
         {
             if (LOCATION.X >= 0 && LOCATION.Y >= 0 && LOCATION.X < slots.Count && LOCATION.Y < slots[(int)LOCATION.X].Count)
@@ -87,6 +92,104 @@ namespace Imbroglios
             }
         }
 
+        #region A* (an A isnt good enough)
+
+        public List<Vector2> GetPath(Vector2 START, Vector2 END, bool ALLOWDIAG)
+        {
+            List<GridLocation> viewable = new List<GridLocation>(), user = new List<GridLocation>();
+
+            List<List<GridLocation>> masterGrid = new List<List<GridLocation>>();
+
+            bool impassable = false;
+            float cost = 1;
+            for (int i = 0; i < slots.Count; i++)
+            {
+                masterGrid.Add (new List<GridLocation>());
+                for (int j = 0; j < slots[i].Count; j++)
+                {
+                    impassable = slots[i][j].imPassable;
+
+                    if (slots[i][j].imPassable || slots[i][j].isFilled)
+                    {
+                        impassable = true;
+                    }
+
+                    cost = slots[i][j].cost;
+
+                    masterGrid[i].Add(new GridLocation(new Vector2(i, j), cost, impassable, 999999999));
+                }
+            }
+
+            viewable.Add(masterGrid[(int)START.X][(int)START.Y]);
+
+            while (viewable.Count > 0 && !(viewable[0].position.X == END.X && viewable[0].position.Y == END.Y))
+            {
+                TestAStarNode(masterGrid, viewable, used, END, ALLOWDIAG);
+            }
+
+            List<Vector2> path = new List<Vector2>();
+
+            if (viewable.Count > 0)
+            {
+                int currentViewableStart = 0;
+                GridLocation currentNode = viewable[currentViewableStart];
+
+                path.Clear();
+                Vector2 tempPos;
+
+                while (true)
+                {
+                    tempPos = GetPosFromLoc(currentNode.position) + slotDims / 2;
+                    path.Add(new Vector2(tempPos.X, tempPos.Y));
+
+                    if (currentNode.position == START)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if ((int)currentNode.parentNode.X != -1 && (int)currentNode.parentNode.Y != -1)
+                        {
+                            if (currentNode.position.X == masterGrid[(int)currentNode.parentNode.X][(int)currentNode.parentNode.Y].position.X && currentNode.position.Y == masterGrid[(int)currentNode.parentNode.X][(int)currentNode.parentNode.Y].position.Y)
+                            {
+                                //Curent node points to itself
+                                currentNode = viewable[currentViewableStart];
+                                currentViewableStart++;
+                            }
+
+                            currentNode = masterGrid[(int)currentNode.parentNode.X][(int)currentNode.parentNode.Y];
+                        }
+                        else
+                        {
+                            //Node isnt on grid
+                            currentNode = viewable[currentViewableStart];
+                            currentViewableStart++;
+                        }
+                    }
+                }
+                path.Reverse();
+            }
+            return path;
+        }
+
+        public void TestAStarNode(List<List<GridLocation>> MASTERGRID, List<GridLocation> VIEWABLE, List<GridLocation> USED, Vector2 END, bool ALLOWDIAG)
+        {
+            GridLocation currentNode;
+            bool up = true, down = true, left = true, right = true;
+
+            //Up
+            if (VIEWABLE[0].position.Y > 0 && VIEWABLE[0].position.Y < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X][(int)VIEWABLE[0].position.Y - 1].imPassable)
+            {
+                currentNode = MASTERGRID[(int)VIEWABLE[0].position.X][(int)VIEWABLE[0].position.Y - 1];
+                up = currentNode.imPassable;
+                SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
+            }
+
+            //14:34 finish coding time
+        }
+
+        #endregion
+
         public virtual void DrawGrid(Vector2 OFFSET)
         {
             if (showGrid)
@@ -104,6 +207,11 @@ namespace Imbroglios
                         if (currentHoverSlot.X == i && currentHoverSlot.Y == j)
                         {
                             Globals.normalEffect.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
+                            Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
+                        }
+                        else if (slots[i][j].isFilled)
+                        {
+                            Globals.normalEffect.Parameters["filterColor"].SetValue(Color.DarkGray.ToVector4());
                             Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
                         }
                         else

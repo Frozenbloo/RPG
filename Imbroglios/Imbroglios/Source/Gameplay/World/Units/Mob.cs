@@ -23,11 +23,11 @@ namespace Imbroglios
             speed = 2f;
         }
 
-        public override void Update(Vector2 OFFSET, Character ENEMY)
+        public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
         {
             AI(ENEMY.player);
 
-            base.Update(OFFSET);
+            base.Update(OFFSET, ENEMY, GRID);
         }
 
         public virtual void AI(Player PLAYER)

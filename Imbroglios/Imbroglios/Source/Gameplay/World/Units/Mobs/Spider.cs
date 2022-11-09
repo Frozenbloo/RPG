@@ -31,7 +31,7 @@ namespace Imbroglios
             spawnTimer.AddToTimer(4000);
         }
 
-        public override void Update(Vector2 OFFSET, Character ENEMY)
+        public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
         {
             spawnTimer.UpdateTimer();
             if (spawnTimer.Test())
@@ -40,7 +40,7 @@ namespace Imbroglios
                 spawnTimer.ResetToZero();
             }
             //rotation = Globals.RotateTowards(position, new Vector2(Globals.mouse.newMousePos.X, Globals.mouse.newMousePos.Y));
-            base.Update(OFFSET, ENEMY);
+            base.Update(OFFSET, ENEMY, GRID);
         }
 
         public virtual void SpawnSpiderEgg()

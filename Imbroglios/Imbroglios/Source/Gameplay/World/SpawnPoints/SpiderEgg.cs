@@ -25,10 +25,10 @@ namespace Imbroglios
             maxSpawns = 3;
         }
 
-        public override void Update(Vector2 OFFSET)
+        public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
         {
 
-            base.Update(OFFSET);
+            base.Update(OFFSET, ENEMY, GRID);
         }
 
         public override void SpawnMob()

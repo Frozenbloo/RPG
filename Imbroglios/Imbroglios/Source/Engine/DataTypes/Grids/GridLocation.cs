@@ -17,7 +17,7 @@ namespace Imbroglios
 {
     public class GridLocation
     {
-        public bool isFilled, imPassible /**You can't walk through it and it counts as being filled**/ , unPathable /**You can't walk through it but isnt filled**/;
+        public bool isFilled, imPassable /**You can't walk through it and it counts as being filled**/ , unPathable /**You can't walk through it but isnt filled**/, beenUsed, isViewable;
         public float fScore, cost, currentDist;
         public Vector2 parentNode, position;
 
@@ -27,14 +27,36 @@ namespace Imbroglios
             isFilled = FILLED;
 
             unPathable = false;
-            imPassible = false;
+            imPassable = false;
+            beenUsed = false;
+            imPassable = false;
         }
 
-        public virtual void SetToFilled(bool IMPASSIBLE)
+        public GridLocation(Vector2 POS, float COST, bool FILLED, float FSCORE)
+        {
+            cost = COST;
+            isFilled = FILLED;
+            unPathable = false;
+            beenUsed = false;
+            isViewable = false;
+
+            position = POS;
+
+            fScore = FSCORE;
+        }
+
+        public void SetNode(Vector2 PARENT, float FSCORE, float CURRENTDIST)
+        {
+            parentNode = PARENT;
+            fScore = FSCORE;
+            currentDist = CURRENTDIST;
+        }
+
+        public virtual void SetToFilled(bool IMPASSABLE)
         {
             //Synonymous 
             isFilled = true;
-            imPassible = IMPASSIBLE;
+            imPassable = IMPASSABLE;
         }
     }
 }

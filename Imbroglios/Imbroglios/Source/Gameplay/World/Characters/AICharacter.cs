@@ -32,9 +32,9 @@ namespace Imbroglios
             spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(2000);
         }
 
-        public override void Update(Character ENEMY, Vector2 OFFSET)
+        public override void Update(Character ENEMY, Vector2 OFFSET, SquareGrid GRID)
         {
-            base.Update(ENEMY, OFFSET);
+            base.Update(ENEMY, OFFSET, GRID);
         }
     }
 }

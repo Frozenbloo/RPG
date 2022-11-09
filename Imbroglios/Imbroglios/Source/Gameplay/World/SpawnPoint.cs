@@ -29,7 +29,7 @@ namespace Imbroglios
             hitDistance = 35.0f;
         }
 
-        public override void Update(Vector2 OFFSET)
+        public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
         {
             spawnTimer.UpdateTimer();
             if (spawnTimer.Test())
@@ -38,7 +38,7 @@ namespace Imbroglios
                 spawnTimer.ResetToZero();
             }
 
-            base.Update(OFFSET);
+            base.Update(OFFSET, ENEMY, GRID);
         }
 
         public virtual void SpawnMob()

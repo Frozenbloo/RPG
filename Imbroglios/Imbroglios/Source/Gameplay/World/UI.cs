@@ -71,7 +71,7 @@ namespace Imbroglios
                 resetBtn.Draw(new Vector2(Globals.screenWidth / 2, Globals.screenHeight/2 + 100));
             }
 
-            if (GameGlobals.isPaused)
+            if (GameGlobals.isPaused && !World.user.player.isDead)
             {
                 tempStr = "Game Paused";
                 strDimensions = font.MeasureString(tempStr);

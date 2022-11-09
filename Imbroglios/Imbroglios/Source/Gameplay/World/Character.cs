@@ -30,7 +30,7 @@ namespace Imbroglios
             id = ID;
         }
 
-        public virtual void Update(Character ENEMY, Vector2 OFFSET)
+        public virtual void Update(Character ENEMY, Vector2 OFFSET, SquareGrid GRID)
         {
             if (player != null)
             {
@@ -39,7 +39,7 @@ namespace Imbroglios
 
             for (int i = 0; i < spawnPoints.Count; i++)
             {
-                spawnPoints[i].Update(OFFSET);
+                spawnPoints[i].Update(OFFSET, ENEMY, GRID);
                 if (spawnPoints[i].isDead)
                 {
                     spawnPoints.RemoveAt(i);
@@ -49,7 +49,7 @@ namespace Imbroglios
 
             for (int i = 0; i < units.Count; i++)
             {
-                units[i].Update(OFFSET, ENEMY);
+                units[i].Update(OFFSET, ENEMY, GRID);
                 if (units[i].isDead)
                 {
                     units.RemoveAt(i);

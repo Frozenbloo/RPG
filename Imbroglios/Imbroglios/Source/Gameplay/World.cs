@@ -59,8 +59,8 @@ namespace Imbroglios
         {
             if (!user.player.isDead && !GameGlobals.isPaused)
             {
-                user.Update(aICharacter, offset);
-                aICharacter.Update(user, offset);
+                user.Update(aICharacter, offset, grid);
+                aICharacter.Update(user, offset, grid);
 
                 for (int i = 0; i < projectiles.Count; i++)
                 {
