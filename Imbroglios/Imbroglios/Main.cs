@@ -25,6 +25,7 @@ namespace Imbroglios
         public float delta;
 
         Gameplay gameplay;
+        Settings settings;
         MainMenu menu;
 
         Basic2D cursor;
@@ -67,7 +68,8 @@ namespace Imbroglios
 
             Globals.keyboard = new TBKeyboard();
             Globals.mouse = new TBMouseControl();
-            menu = new MainMenu(ChangeGameState, ExitGame);
+            menu = new MainMenu(ChangeGameState, ChangeGameState, ExitGame);
+            settings = new Settings(ChangeGameState);
             gameplay = new Gameplay(ChangeGameState);
         }
 
@@ -84,6 +86,10 @@ namespace Imbroglios
             else if (Globals.gameState == 1)
             {
                 gameplay.Update();
+            }
+            else if (Globals.gameState == 2)
+            {
+                settings.Update();
             }
 
             Globals.keyboard.UpdateOld();
@@ -116,6 +122,10 @@ namespace Imbroglios
             else if (Globals.gameState == 1)
             {
                 gameplay.Draw();
+            }
+            else if (Globals.gameState == 2)
+            {
+                settings.Draw();
             }
 
             Globals.normalEffect.Parameters["xSize"].SetValue((float)cursor.myModel.Bounds.Width);

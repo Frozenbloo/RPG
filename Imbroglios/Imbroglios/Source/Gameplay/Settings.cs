@@ -18,35 +18,30 @@ using System.Text.RegularExpressions;
 #endregion
 
 namespace Imbroglios { 
-    public class MainMenu
+    public class Settings
     {
         public Basic2D background;
 
-        //Play, Settings and Exit Delegates
-        public PassObject PlayClickDel, SettingClickDel, ExitClickDel;
+        //Play and Exit Delegates
+        public PassObject MenuClickDel, SettingClickDel, ExitClickDel;
 
         public List<Button2D> buttons = new List<Button2D>();
 
-        public MainMenu(PassObject PLAYCLICKDEL, PassObject SETTINGCLICKDEL, PassObject EXITCLICKDEL) 
+        public Settings(PassObject MENUCLICKDEL) 
         {
-            PlayClickDel = PLAYCLICKDEL;
-            ExitClickDel = EXITCLICKDEL;
-            SettingClickDel = SETTINGCLICKDEL;
+            MenuClickDel = MENUCLICKDEL;
+            SettingClickDel = null;
 
             background = new Basic2D("2D\\Units\\Mobs\\Ghost", new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), new Vector2(Globals.screenWidth, Globals.screenHeight));
 
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Play", PlayClickDel, 1));
-
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Settings", SettingClickDel, 2));
-
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Exit", ExitClickDel, null));
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Back", MenuClickDel, 0));
         }
 
         public virtual void Update()
         {
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].Update(new Vector2(80, 780 + 40 * i));
+                buttons[i].Update(new Vector2(80, 860 + 40 * i));
             }
         }
 
@@ -56,7 +51,7 @@ namespace Imbroglios {
 
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].Draw(new Vector2(80, 780 + 40 * i));
+                buttons[i].Draw(new Vector2(80, 860 + 40 * i));
             }
         }
     }
