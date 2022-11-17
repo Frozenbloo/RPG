@@ -172,7 +172,7 @@ namespace Imbroglios
             }
             return path;
         }
-
+        /**
         public void TestAStarNode(List<List<GridLocation>> MASTERGRID, List<GridLocation> VIEWABLE, List<GridLocation> USED, Vector2 END, bool ALLOWDIAG)
         {
             GridLocation currentNode;

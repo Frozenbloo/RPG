@@ -22,7 +22,7 @@ namespace Imbroglios
 
         public Button2D resetBtn, menuBtn;
 
-        public QuantityDisplayBar hpBar;
+        public QuantityDisplayBar hpBar, xpBar;
 
         public UI(PassObject RESET, PassObject CHANGEGAMESTATE)
         {
@@ -32,6 +32,7 @@ namespace Imbroglios
             menuBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(220, 32), "Fonts\\KenneyPixel", "Quit to Main Menu", CHANGEGAMESTATE, 0);
 
             hpBar = new QuantityDisplayBar(new Vector2(208, 20), 0, Color.Red);
+            xpBar = new QuantityDisplayBar(new Vector2(208, 7.5f), 0, Color.GreenYellow);
         }
 
         public void Update(World World)
@@ -80,6 +81,7 @@ namespace Imbroglios
             }
 
             hpBar.Draw(new Vector2(20, Globals.screenHeight - 40));
+            xpBar.Draw(new Vector2(20, Globals.screenHeight - 45));
         }
     }
 }

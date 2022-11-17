@@ -33,7 +33,7 @@ namespace Imbroglios {
             ExitClickDel = EXITCLICKDEL;
             SettingClickDel = SETTINGCLICKDEL;
 
-            background = new Basic2D("2D\\Units\\Mobs\\Ghost", new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), new Vector2(Globals.screenWidth, Globals.screenHeight));
+            background = new Animated2D("2D\\Units\\Mobs\\Ghost", new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), new Vector2(Globals.screenWidth, Globals.screenHeight), new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), Color.White);
 
             buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Play", PlayClickDel, 1));
 

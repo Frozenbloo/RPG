@@ -26,7 +26,7 @@ namespace Imbroglios
 
         public Unit owner;
 
-        public TBTimer timer;
+        public TBTimer despawnTimer;
 
         public Projectile2D(string filePATH, Vector2 POS, Vector2 DIMS, Unit OWNER, Vector2 TARGET) : base(filePATH, POS, DIMS)
         {
@@ -44,15 +44,15 @@ namespace Imbroglios
 
             rotation = Globals.RotateTowards(position, new Vector2(TARGET.X, TARGET.Y));
 
-            timer = new TBTimer(1200);
+            despawnTimer = new TBTimer(1200);
         }
 
         public virtual void Update(Vector2 OFFSET, List<Unit> UNITS)
         {
             position += direction * speed;
 
-            timer.UpdateTimer();
-            if (timer.Test())
+            despawnTimer.UpdateTimer();
+            if (despawnTimer.Test())
             {
                 projectDespawn = true;
             }
