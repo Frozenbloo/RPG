@@ -23,7 +23,7 @@ namespace Imbroglios {
         public Basic2D background;
 
         //Play and Exit Delegates
-        public PassObject PlayClickDel, ExitClickDel;
+        public PassObject PlayClickDel, SettingClickDel, ExitClickDel;
 
         public List<Button2D> buttons = new List<Button2D>();
 
@@ -31,21 +31,22 @@ namespace Imbroglios {
         {
             PlayClickDel = PLAYCLICKDEL;
             ExitClickDel = EXITCLICKDEL;
+            SettingClickDel = null;
 
             background = new Basic2D("2D\\Units\\Mobs\\Ghost", new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), new Vector2(Globals.screenWidth, Globals.screenHeight));
 
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\KenneyPixel", "Play", PlayClickDel, 1));
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Play", PlayClickDel, 1));
 
-            //Settings Button Later
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Settings", SettingClickDel, null));
 
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\KenneyPixel", "Exit", ExitClickDel, null));
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Exit", ExitClickDel, null));
         }
 
         public virtual void Update()
         {
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].Update(new Vector2(80, 800 + 60 * i));
+                buttons[i].Update(new Vector2(80, 780 + 40 * i));
             }
         }
 
@@ -55,7 +56,7 @@ namespace Imbroglios {
 
             for (int i = 0; i < buttons.Count; i++)
             {
-                buttons[i].Draw(new Vector2(80, 800 + 60 * i));
+                buttons[i].Draw(new Vector2(80, 780 + 40 * i));
             }
         }
     }

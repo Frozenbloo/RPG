@@ -92,6 +92,7 @@ namespace Imbroglios
             }
         }
 
+        /**
         #region A* (an A isnt good enough)
 
         public List<Vector2> GetPath(Vector2 START, Vector2 END, bool ALLOWDIAG)
@@ -189,6 +190,7 @@ namespace Imbroglios
         }
 
         #endregion
+        **/
 
         public virtual void DrawGrid(Vector2 OFFSET)
         {
