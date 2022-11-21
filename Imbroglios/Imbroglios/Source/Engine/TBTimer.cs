@@ -100,9 +100,6 @@ namespace Imbroglios
             XElement xml= new XElement("Timer",
                                     new XElement("mSec", mSec),
                                     new XElement("timer", Timer));
-
-
-
             return xml;
         }
 
