@@ -92,7 +92,7 @@ namespace Imbroglios
             }
         }
 
-        /**
+
         #region A* (an A isnt good enough)
 
         public List<Vector2> GetPath(Vector2 START, Vector2 END, bool ALLOWDIAG)
@@ -105,9 +105,11 @@ namespace Imbroglios
             float cost = 1;
             for (int i = 0; i < slots.Count; i++)
             {
+                //Adds the grids to the mastergrid
                 masterGrid.Add (new List<GridLocation>());
                 for (int j = 0; j < slots[i].Count; j++)
                 {
+                    //Sets if the slots are passable or not
                     impassable = slots[i][j].imPassable;
 
                     if (slots[i][j].imPassable || slots[i][j].isFilled)
@@ -157,7 +159,6 @@ namespace Imbroglios
                                 currentNode = viewable[currentViewableStart];
                                 currentViewableStart++;
                             }
-
                             currentNode = masterGrid[(int)currentNode.parentNode.X][(int)currentNode.parentNode.Y];
                         }
                         else
@@ -172,7 +173,7 @@ namespace Imbroglios
             }
             return path;
         }
-        /**
+
         public void TestAStarNode(List<List<GridLocation>> MASTERGRID, List<GridLocation> VIEWABLE, List<GridLocation> USED, Vector2 END, bool ALLOWDIAG)
         {
             GridLocation currentNode;
@@ -185,12 +186,33 @@ namespace Imbroglios
                 up = currentNode.imPassable;
                 SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
             }
+            //Down
+            if (VIEWABLE[0].position.Y < 0 && VIEWABLE[0].position.Y < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X][(int)VIEWABLE[0].position.Y -1].imPassable)
+            {
+                currentNode = MASTERGRID[(int)VIEWABLE[0].position.X][(int)VIEWABLE[0].position.Y + 1];
+                down = currentNode.imPassable;
+                SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
+            }
+            //Left
+            if (VIEWABLE[0].position.X > 0 && VIEWABLE[0].position.X < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X - 1][(int)VIEWABLE[0].position.Y].imPassable)
+            {
+                currentNode = MASTERGRID[(int)VIEWABLE[0].position.X - 1][(int)VIEWABLE[0].position.Y];
+                left = currentNode.imPassable;
+                SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
+            }
+            //Right
+            if (VIEWABLE[0].position.X < 0 && VIEWABLE[0].position.X < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y].imPassable)
+            {
+                currentNode = MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y];
+                right = currentNode.imPassable;
+                SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
+            }
 
             //14:34 finish coding time
         }
 
         #endregion
-        **/
+
 
         public virtual void DrawGrid(Vector2 OFFSET)
         {
