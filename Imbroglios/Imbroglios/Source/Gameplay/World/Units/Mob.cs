@@ -45,6 +45,7 @@ namespace Imbroglios
                 PLAYER.getHit(1);
                 isDead = true;
             }
+            //49:55
         }
 
         public override void Draw(Vector2 OFFSET)
