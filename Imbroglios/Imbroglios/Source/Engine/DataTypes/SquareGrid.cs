@@ -92,12 +92,12 @@ namespace Imbroglios
             }
         }
 
-
+        
         #region A* (an A isnt good enough)
 
         public List<Vector2> GetPath(Vector2 START, Vector2 END, bool ALLOWDIAG)
         {
-            List<GridLocation> viewable = new List<GridLocation>(), user = new List<GridLocation>();
+            List<GridLocation> viewable = new List<GridLocation>(), used = new List<GridLocation>();
 
             List<List<GridLocation>> masterGrid = new List<List<GridLocation>>();
 
@@ -187,7 +187,7 @@ namespace Imbroglios
                 SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
             }
             //Down
-            if (VIEWABLE[0].position.Y < 0 && VIEWABLE[0].position.Y < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X][(int)VIEWABLE[0].position.Y -1].imPassable)
+            if (VIEWABLE[0].position.Y >= 0 && VIEWABLE[0].position.Y + 1 < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X][(int)VIEWABLE[0].position.Y + 1].imPassable)
             {
                 currentNode = MASTERGRID[(int)VIEWABLE[0].position.X][(int)VIEWABLE[0].position.Y + 1];
                 down = currentNode.imPassable;
@@ -201,20 +201,109 @@ namespace Imbroglios
                 SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
             }
             //Right
-            if (VIEWABLE[0].position.X < 0 && VIEWABLE[0].position.X < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y].imPassable)
+            if (VIEWABLE[0].position.X >= 0 && VIEWABLE[0].position.X < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y].imPassable)
             {
                 currentNode = MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y];
                 right = currentNode.imPassable;
                 SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, 1);
             }
 
-            //14:34 finish coding time
-        }
+            if (ALLOWDIAG)
+            {
+				// Up and Right
+				if (VIEWABLE[0].position.X >= 0 && VIEWABLE[0].position.X + 1 < MASTERGRID.Count && VIEWABLE[0].position.Y > 0 && VIEWABLE[0].position.Y < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y - 1].imPassable && (!up || !right))
+				{
+					currentNode = MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y - 1];
 
-        #endregion
+					SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, (float)Math.Sqrt(2));
+				}
+
+				//Down and Right
+				if (VIEWABLE[0].position.X >= 0 && VIEWABLE[0].position.X + 1 < MASTERGRID.Count && VIEWABLE[0].position.Y >= 0 && VIEWABLE[0].position.Y + 1 < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y + 1].imPassable && (!down || !right))
+				{
+					currentNode = MASTERGRID[(int)VIEWABLE[0].position.X + 1][(int)VIEWABLE[0].position.Y + 1];
+
+					SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, (float)Math.Sqrt(2));
+				}
+
+				//Down and Left
+				if (VIEWABLE[0].position.X > 0 && VIEWABLE[0].position.X < MASTERGRID.Count && VIEWABLE[0].position.Y >= 0 && VIEWABLE[0].position.Y + 1 < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X - 1][(int)VIEWABLE[0].position.Y + 1].imPassable && (!down || !left))
+				{
+					currentNode = MASTERGRID[(int)VIEWABLE[0].position.X - 1][(int)VIEWABLE[0].position.Y + 1];
+
+					SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, (float)Math.Sqrt(2));
+				}
+
+				// Up and Left
+				if (VIEWABLE[0].position.X > 0 && VIEWABLE[0].position.X < MASTERGRID.Count && VIEWABLE[0].position.Y > 0 && VIEWABLE[0].position.Y < MASTERGRID[0].Count && !MASTERGRID[(int)VIEWABLE[0].position.X - 1][(int)VIEWABLE[0].position.Y - 1].imPassable && (!up || !left))
+				{
+					currentNode = MASTERGRID[(int)VIEWABLE[0].position.X - 1][(int)VIEWABLE[0].position.Y - 1];
+
+					SetAStarNode(VIEWABLE, USED, currentNode, new Vector2(VIEWABLE[0].position.X, VIEWABLE[0].position.Y), VIEWABLE[0].currentDist, END, (float)Math.Sqrt(2));
+				}
+			}
+			VIEWABLE[0].beenUsed = true;
+			USED.Add(VIEWABLE[0]);
+			VIEWABLE.RemoveAt(0);
 
 
-        public virtual void DrawGrid(Vector2 OFFSET)
+
+			// sort
+			/*viewable.Sort(delegate(AStarNode n1, AStarNode n2)
+            {
+                return n1.FScore.CompareTo(n2.FScore);
+            });*/
+		}
+
+		public void SetAStarNode(List<GridLocation> viewable, List<GridLocation> used, GridLocation nextNode, Vector2 nextParent, float d, Vector2 target, float DISTMULT)
+		{
+			float f = d;
+			float addedDist = (nextNode.cost * DISTMULT);
+			//Add item
+			if (!nextNode.isViewable && !nextNode.beenUsed)
+			{
+				//viewable.Add(new AStarNode(nextParent, f, new Vector2(nextNode.Pos.X, nextNode.Pos.Y), nextNode.CurrentDist + 1, nextNode.Cost, nextNode.Impassable));
+
+				nextNode.SetNode(nextParent, f, d + addedDist);
+				nextNode.isViewable = true;
+
+				SetAStarNodeInsert(viewable, nextNode);
+			}
+			//Node is in viewable, so check if Fscore needs revised
+			else if (nextNode.isViewable)
+			{
+				if (f < nextNode.fScore)
+				{
+					nextNode.SetNode(nextParent, f, d + addedDist);
+				}
+			}
+		}
+
+		public virtual void SetAStarNodeInsert(List<GridLocation> LIST, GridLocation NEWNODE)
+		{
+			bool added = false;
+			for (int i = 0; i < LIST.Count; i++)
+			{
+				if (LIST[i].fScore > NEWNODE.fScore)
+				{
+					//Cant insert at 0, because that would take up the looking at node...
+					LIST.Insert(Math.Max(1, i), NEWNODE);
+					added = true;
+					break;
+				}
+			}
+
+			if (!added)
+			{
+				LIST.Add(NEWNODE);
+			}
+		}
+
+		#endregion
+
+
+
+		public virtual void DrawGrid(Vector2 OFFSET)
         {
             if (showGrid)
             {

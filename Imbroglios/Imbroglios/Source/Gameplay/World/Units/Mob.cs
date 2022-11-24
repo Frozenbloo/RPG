@@ -25,13 +25,19 @@ namespace Imbroglios
 
         public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
         {
-            AI(ENEMY.player);
+            AI(ENEMY.player, GRID);
 
             base.Update(OFFSET, ENEMY, GRID);
         }
 
-        public virtual void AI(Player PLAYER)
+        public virtual void AI(Player PLAYER, SquareGrid GRID)
         {
+            if (moves == null || (moves.Count == 0 && position.X == move2.X && position.Y == move2.Y))
+            {
+                moves = FindPath(GRID, PLAYER.position);
+                move2 = moves[0];
+                moves.RemoveAt(0);
+            }
             position += Globals.RadialMovement(PLAYER.position, position, speed);
 
             if (Globals.GetDistance(position, PLAYER.position) < 35)
