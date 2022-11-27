@@ -17,7 +17,6 @@ namespace Imbroglios
 {
     public class SquareGrid
     {
-
         public bool showGrid; //For Debugging ONLY
 
         public Vector2 slotDims, gridDims, physicalStartPos, totalPhysicalDims, currentHoverSlot;
@@ -170,6 +169,10 @@ namespace Imbroglios
                     }
                 }
                 path.Reverse();
+                if (path.Count > 1)
+                {
+                    path.RemoveAt(0);
+                }
             }
             return path;
         }

@@ -17,10 +17,14 @@ namespace Imbroglios
 {
     public class Mob : Unit
     {
+        public bool isPathing;
+
+        private TBTimer repathTimer = new TBTimer(100);
 
         public Mob(string filePATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base(filePATH, POS, DIMS, FRAMES, OWNERID)
         {
             speed = 2f;
+            isPathing= false;
         }
 
         public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
@@ -32,20 +36,36 @@ namespace Imbroglios
 
         public virtual void AI(Player PLAYER, SquareGrid GRID)
         {
-            if (moves == null || (moves.Count == 0 && position.X == move2.X && position.Y == move2.Y))
+            repathTimer.UpdateTimer();
+            //If there are no moves in the list OR if it is 100ms after last path, get another path
+            if (moves == null || (moves.Count == 0 && position.X == move2.X && position.Y == move2.Y) || repathTimer.Test())
             {
-                moves = FindPath(GRID, PLAYER.position);
-                move2 = moves[0];
-                moves.RemoveAt(0);
-            }
-            position += Globals.RadialMovement(PLAYER.position, position, speed);
+                if (!isPathing)
+                {
+                    Task repathTask = new Task(() =>
+                    {
+						isPathing = true;
+						moves = FindPath(GRID, GRID.GetSlotFromPixel(PLAYER.position, Vector2.Zero));
+						move2 = moves[0];
+						moves.RemoveAt(0);
 
-            if (Globals.GetDistance(position, PLAYER.position) < 35)
+						repathTimer.ResetToZero();
+						isPathing = false;
+					});
+                    repathTask.Start();
+				}
+                
+            }
+            else //move to the next node
+            {
+                MoveUnit();
+            }
+
+            if (Globals.GetDistance(position, PLAYER.position) < GRID.slotDims.X * 1.2f) //check to see if the player is in position
             {
                 PLAYER.getHit(1);
                 isDead = true;
             }
-            //49:55
         }
 
         public override void Draw(Vector2 OFFSET)

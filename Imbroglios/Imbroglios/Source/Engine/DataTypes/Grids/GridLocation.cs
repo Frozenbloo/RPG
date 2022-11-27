@@ -36,6 +36,7 @@ namespace Imbroglios
         {
             cost = COST;
             isFilled = FILLED;
+            imPassable = FILLED;
             unPathable = false;
             beenUsed = false;
             isViewable = false;

@@ -22,7 +22,7 @@ namespace Imbroglios
 
         public Unit(string filePATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base(filePATH, POS, DIMS, FRAMES, OWNERID)
         {
-
+            move2 = new Vector2(POS.X, POS.Y);
         }
 
         public override void Update(Vector2 OFFSET, Character ENEMY, SquareGrid GRID)
