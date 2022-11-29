@@ -42,10 +42,12 @@ namespace Imbroglios
             {
                 if (!isPathing)
                 {
+                    //Runs the repath task off the main thread by threading to improve performance
                     Task repathTask = new Task(() =>
                     {
 						isPathing = true;
 						moves = FindPath(GRID, GRID.GetSlotFromPixel(PLAYER.position, Vector2.Zero));
+                        //TODO Add checking to see if the enemy is at the grid boundary
 						move2 = moves[0];
 						moves.RemoveAt(0);
 
