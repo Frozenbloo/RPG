@@ -50,7 +50,7 @@ namespace Imbroglios
 
             offset = new Vector2(0, 0);
 
-            grid = new SquareGrid(new Vector2(25, 25), new Vector2(-500, -500), new Vector2(Globals.screenWidth + 5000, Globals.screenHeight + 5000));
+            grid = new SquareGrid(new Vector2(25, 25), new Vector2(-500, -500), new Vector2(Globals.screenWidth + 2000, Globals.screenHeight + 2000));
 
             ui = new UI(ResetWorld, CHANGEGAMESTATE);
         }
