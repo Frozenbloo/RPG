@@ -35,11 +35,11 @@ namespace Imbroglios {
 
             background = new Animated2D("2D\\Units\\Mobs\\Ghost", new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), new Vector2(Globals.screenWidth, Globals.screenHeight), new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), Color.White);
 
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Play", PlayClickDel, 1));
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\Kenney Mini", "Play", PlayClickDel, 1));
 
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Settings", SettingClickDel, 2));
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\Kenney Mini", "Settings", SettingClickDel, 2));
 
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Exit", ExitClickDel, null));
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\Kenney Mini", "Exit", ExitClickDel, null));
         }
 
         public virtual void Update()

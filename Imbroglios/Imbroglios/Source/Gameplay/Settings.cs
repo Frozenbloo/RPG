@@ -34,7 +34,7 @@ namespace Imbroglios {
 
             background = new Basic2D("2D\\Units\\Mobs\\Ghost", new Vector2(Globals.screenWidth/2, Globals.screenHeight/2), new Vector2(Globals.screenWidth, Globals.screenHeight));
 
-            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\KenneyPixel", "Back", MenuClickDel, 0));
+            buttons.Add(new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(128, 32), "Fonts\\Kenney Mini", "Back", MenuClickDel, 0));
         }
 
         public virtual void Update()

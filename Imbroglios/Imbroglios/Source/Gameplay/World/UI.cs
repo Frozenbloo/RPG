@@ -26,10 +26,10 @@ namespace Imbroglios
 
         public UI(PassObject RESET, PassObject CHANGEGAMESTATE)
         {
-            font = Globals.content.Load<SpriteFont>("Fonts\\KenneyPixel");
+            font = Globals.content.Load<SpriteFont>("Fonts\\Kenney Mini");
 
-            resetBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\KenneyPixel", "Reset", RESET, null);
-            menuBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(220, 32), "Fonts\\KenneyPixel", "Quit to Main Menu", CHANGEGAMESTATE, 0);
+            resetBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\Kenney Mini", "Reset", RESET, null);
+            menuBtn = new Button2D("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(220, 32), "Fonts\\Kenney Mini", "Quit to Main Menu", CHANGEGAMESTATE, 0);
 
             hpBar = new QuantityDisplayBar(new Vector2(208, 20), 0, Color.Red);
             xpBar = new QuantityDisplayBar(new Vector2(208, 7.5f), 0, Color.GreenYellow);

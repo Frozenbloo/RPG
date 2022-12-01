@@ -151,6 +151,36 @@
 /processorParam:DebugMode=Auto
 /build:Effects/NormalFlat.fx
 
+#begin Fonts/Kenney Future Narrow.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Kenney Future Narrow.spritefont
+
+#begin Fonts/Kenney Future Narrow.ttf
+/copy:Fonts/Kenney Future Narrow.ttf
+
+#begin Fonts/Kenney Future.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Kenney Future.spritefont
+
+#begin Fonts/Kenney Future.ttf
+/copy:Fonts/Kenney Future.ttf
+
+#begin Fonts/Kenney Mini.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Kenney Mini.spritefont
+
+#begin Fonts/Kenney Mini.ttf
+/copy:Fonts/Kenney Mini.ttf
+
 #begin Fonts/KenneyPixel.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
