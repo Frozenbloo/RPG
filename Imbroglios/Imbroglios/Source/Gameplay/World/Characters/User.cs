@@ -24,7 +24,8 @@ namespace Imbroglios
         public User(int ID) : base(ID)
         {
             player = new Player("2D\\Player\\player", new Vector2(Globals.screenWidth / 2, Globals.screenHeight/2), new Vector2(48, 48), new Vector2(1, 1), id);
-        }
+			player = new Player("2D\\Player\\player", new Vector2(0,0), new Vector2(48, 48), new Vector2(1, 1), id);
+		}
 
         public override void Update(Character ENEMY, Vector2 OFFSET, SquareGrid GRID)
         {
