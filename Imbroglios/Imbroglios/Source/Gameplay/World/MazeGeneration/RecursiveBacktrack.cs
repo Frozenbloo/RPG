@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Security.AccessControl;
+using System.Collections.Specialized;
 
 #endregion
 
@@ -21,7 +22,10 @@ namespace Imbroglios
 {
 	public class RecursiveBacktrack : MazeGeneration
 	{
-		Wall mazeWall = new Wall("2D\\Misc\\shade", new Vector2(0, 0), new Vector2(100,100), true, false, false, true);
+		List<Wall> wallList = new List<Wall>();
+		public int MazeRows, MazeColumns;
+
+		Wall[,] walls;
 		public RecursiveBacktrack(SquareGrid GRID, int ROWS, int COLUMNS)
 		{
 			Grid = GRID;
@@ -143,17 +147,30 @@ namespace Imbroglios
 		{
 			int rows = GRID.GetLength(rowDimension);
 			int colums = GRID.GetLength(columnDimension);
+			walls = new Wall[rows, colums];
 			//Top Line
 			for (int i = 0; i < colums; i++)
 			{
-				//mazeWall = new Wall("2D\\Misc\\shade", Position(i, 0), new Vector2(100,100), true, false, false, true);
-				new Wall("2D\\Misc\\shade", Position(i, 0), new Vector2(100, 100), true, false, false, true);
+				Wall mazeWall = new Wall("2D\\Misc\\shade", Position(i, 0), new Vector2(100, 100), true, false, false, true);
+				wallList.Add(mazeWall);
 			}
+			
 		}
 
 		public void Draw(Vector2 OFFSET)
 		{
-			mazeWall.Draw(OFFSET);
+			for (int i = 0; i < wallList.Count; i++)
+			{
+				wallList[i].Draw(OFFSET);
+			}
+		}
+
+		public void Update(Vector2 OFFSET)
+		{
+			for (int i = 0; i < wallList.Count; i++)
+			{
+				wallList[i].Update(OFFSET);
+			}
 		}
 
 		

@@ -21,7 +21,6 @@ namespace Imbroglios
         public Player(string filePATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base(filePATH, POS, DIMS, FRAMES, OWNERID)
         {
             speed = 2.5f;
-
             hp = 1;
             hpMax = hp;
         }
@@ -34,7 +33,11 @@ namespace Imbroglios
 
             if (Globals.keyboard.GetPress("A"))
             {
-                position = new Vector2(position.X - speed, position.Y);
+                Vector2 newPosition = new Vector2(position.X - speed, position.Y);
+                if (!(newPosition.Y > -OFFSET.Y + (Globals.screenHeight)))
+                {
+                    position = newPosition;
+                }
                 checkScreenScroll = true;
             }
 
@@ -46,13 +49,21 @@ namespace Imbroglios
 
             if (Globals.keyboard.GetPress("W"))
             {
-                position = new Vector2(position.X, position.Y - speed);
-                checkScreenScroll = true;
+                Vector2 newPosition = new Vector2(position.X, position.Y - speed);
+				if (!(newPosition.Y > OFFSET.Y + (Globals.screenHeight)))
+				{
+					position = newPosition;
+				}
+				checkScreenScroll = true;
             }
 
             if (Globals.keyboard.GetPress("S"))
             {
-                position = new Vector2(position.X, position.Y + speed);
+				Vector2 newPosition = new Vector2(position.X, position.Y + speed);
+				if (!(newPosition.Y > -OFFSET.Y + (Globals.screenHeight)))
+				{
+					position = newPosition;
+				}
                 checkScreenScroll = true;
             }
 

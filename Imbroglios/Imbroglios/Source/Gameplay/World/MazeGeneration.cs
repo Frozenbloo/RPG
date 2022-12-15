@@ -51,11 +51,17 @@ namespace Imbroglios
 
 		public virtual void Generate(int[,] GRID, int ROWS, int COLUMNS)
 		{
+			/**
 			Random rand = new Random();
 			this.StartX = rand.Next(0, COLUMNS);
 			this.StartY = rand.Next(0, ROWS);
 			this.EndX = rand.Next(0, COLUMNS);
 			this.EndY = rand.Next(0, ROWS);
+			**/
+			StartX = 0;
+			StartY = 0;
+			EndX = 5;
+			EndY = 5;
 		}
 	}
 }

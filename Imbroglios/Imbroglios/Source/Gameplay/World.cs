@@ -92,6 +92,8 @@ namespace Imbroglios
                 grid.Update(offset);
             }
 
+            maze.Update(offset);
+
             //Keep at bottom to draw on top
             ui.Update(this);
         }

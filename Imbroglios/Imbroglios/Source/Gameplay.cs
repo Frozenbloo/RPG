@@ -24,6 +24,8 @@ namespace Imbroglios
 
         World world;
 
+        Hub hub;
+
         PassObject ChangeGameState;
 
         public Gameplay(PassObject changeGameState)
@@ -38,18 +40,27 @@ namespace Imbroglios
         {
             if (playState == 0)
             {
+                hub.Update();
+            }
+            if (playState == 1)
+            {
                 world.Update();
             }
         }
 
         public virtual void ResetWorld(Object INFO)
         {
-            world = new World(ResetWorld, ChangeGameState);
+			hub = new Hub(ResetWorld, ChangeGameState);
+			world = new World(ResetWorld, ChangeGameState);
         }
 
         public virtual void Draw()
         {
             if (playState == 0)
+            {
+                hub.Draw(Vector2.Zero);
+            }
+            if (playState == 1)
             {
                 world.Draw(Vector2.Zero);
             }
