@@ -34,7 +34,7 @@ namespace Imbroglios
             if (Globals.keyboard.GetPress("A"))
             {
                 Vector2 newPosition = new Vector2(position.X - speed, position.Y);
-                if (!(newPosition.Y > -OFFSET.Y + (Globals.screenHeight)))
+                if ((newPosition.X > -OFFSET.X - (Globals.screenWidth/2)))
                 {
                     position = newPosition;
                 }
@@ -43,14 +43,18 @@ namespace Imbroglios
 
             if (Globals.keyboard.GetPress("D"))
             {
-                position = new Vector2(position.X + speed, position.Y);
+                Vector2 newPosition = new Vector2(position.X + speed, position.Y);
+                if (!(newPosition.X > -OFFSET.X + (Globals.screenWidth)))
+                {
+                    position= newPosition;
+                }
                 checkScreenScroll = true;
             }
 
             if (Globals.keyboard.GetPress("W"))
             {
                 Vector2 newPosition = new Vector2(position.X, position.Y - speed);
-				if (!(newPosition.Y > OFFSET.Y + (Globals.screenHeight)))
+				if ((newPosition.Y < -OFFSET.Y + (Globals.screenHeight)))
 				{
 					position = newPosition;
 				}

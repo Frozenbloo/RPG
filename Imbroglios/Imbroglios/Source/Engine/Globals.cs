@@ -35,6 +35,8 @@ namespace Imbroglios
 
         public static GameTime gameTime;
 
+        public static List<Message> messageList= new List<Message>();
+
 
         public static float GetDistance(Vector2 pos, Vector2 target)
         {

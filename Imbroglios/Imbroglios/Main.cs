@@ -30,11 +30,15 @@ namespace Imbroglios
 
         Basic2D cursor;
 
+        bool lockUpdate;
+
         public Main()
         {
             graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
+
+            lockUpdate = false;
         }
 
         protected override void Initialize()
@@ -79,18 +83,36 @@ namespace Imbroglios
             Globals.keyboard.Update();
             Globals.mouse.Update();
 
-            if (Globals.gameState == 0)
+            lockUpdate = false;
+            for (int i = 0; i < Globals.messageList.Count; i++)
             {
-                menu.Update();
+                Globals.messageList[i].Update();
+                if (!Globals.messageList[i].canRemove)
+                {
+					lockUpdate = Globals.messageList[i].lockScreen;
+				}
+                else
+                {
+                    Globals.messageList.RemoveAt(i);
+                    i--;
+                }
             }
-            else if (Globals.gameState == 1)
+
+            if (!lockUpdate)
             {
-                gameplay.Update();
-            }
-            else if (Globals.gameState == 2)
-            {
-                settings.Update();
-            }
+				if (Globals.gameState == 0)
+				{
+					menu.Update();
+				}
+				else if (Globals.gameState == 1)
+				{
+					gameplay.Update();
+				}
+				else if (Globals.gameState == 2)
+				{
+					settings.Update();
+				}
+			}
 
             Globals.keyboard.UpdateOld();
             Globals.mouse.UpdateOld();
@@ -136,6 +158,12 @@ namespace Imbroglios
             Globals.normalEffect.CurrentTechnique.Passes[0].Apply();
 
             cursor.Draw(new Vector2(Globals.mouse.newMousePos.X, Globals.mouse.newMousePos.Y), new Vector2(0, 0), Color.White);
+
+            for (int i = 0; i < Globals.messageList.Count; i++)
+            {
+                Globals.messageList[i].Draw();
+            }
+
             Globals.spriteBatch.End();
 
             base.Draw(gameTime);

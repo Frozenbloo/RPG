@@ -57,7 +57,7 @@ namespace Imbroglios
             maze = new RecursiveBacktrack(grid, 50, 50);
 
             ui = new UI(ResetWorld, CHANGEGAMESTATE);
-        }
+		}
 
         public virtual void Update()
         {
