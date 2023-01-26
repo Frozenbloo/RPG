@@ -40,10 +40,6 @@ namespace Imbroglios
 
 			offset = new Vector2(0, 0);
 
-			grid = new SquareGrid(new Vector2(25, 25), new Vector2(-500, -500), new Vector2(Globals.screenWidth + 2000, Globals.screenHeight + 2000));
-
-			maze = new RecursiveBacktrack(grid, 50, 50);
-
 			ui = new UI(ResetWorld, CHANGEGAMESTATE);
 		}
 
@@ -117,13 +113,6 @@ namespace Imbroglios
 
 		public override void Draw(Vector2 OFFSET)
 		{
-			grid.DrawGrid(offset);
-
-			for (int i = 0; i < projectiles.Count; i++)
-			{
-				projectiles[i].Draw(offset);
-			}
-
 			user.Draw(offset);
 
 			//Keep at bottom to draw on top

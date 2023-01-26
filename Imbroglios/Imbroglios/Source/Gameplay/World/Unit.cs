@@ -30,6 +30,12 @@ namespace Imbroglios
             base.Update(OFFSET, ENEMY, GRID);
         }
 
+        /// <summary>
+        /// Returns a list of nodes from the current position to the end slot
+        /// </summary>
+        /// <param name="GRID">The Grid to use</param>
+        /// <param name="ENDSLOT">The slot to path to</param>
+        /// <returns></returns>
         public virtual List<Vector2> FindPath(SquareGrid GRID, Vector2 ENDSLOT)
         {
             //Clears the list of nodes the ai can move to
@@ -47,6 +53,9 @@ namespace Imbroglios
             return tempPath;
         }
 
+        /// <summary>
+        /// Moves the unit
+        /// </summary>
         public virtual void MoveUnit()
         {
             if (position.X != move2.X || position.Y != move2.Y)
