@@ -17,7 +17,14 @@ namespace Imbroglios
 {
     public class Player : Unit
     {
-
+        /// <summary>
+        /// Creates a new player type
+        /// </summary>
+        /// <param name="filePATH">The file path to the texture</param>
+        /// <param name="POS">The spawn location</param>
+        /// <param name="DIMS">The dimensions</param>
+        /// <param name="FRAMES">Animated2D Frames</param>
+        /// <param name="OWNERID">The ID of its owner</param>
         public Player(string filePATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, int OWNERID) : base(filePATH, POS, DIMS, FRAMES, OWNERID)
         {
             speed = 2.5f;

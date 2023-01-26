@@ -27,6 +27,12 @@ namespace Imbroglios {
 
         public List<Button2D> buttons = new List<Button2D>();
 
+        /// <summary>
+        /// Creates a new instance of a Main Menu
+        /// </summary>
+        /// <param name="PLAYCLICKDEL">The delegate for the play button</param>
+        /// <param name="SETTINGCLICKDEL">The delegate for the settings button</param>
+        /// <param name="EXITCLICKDEL">The delegate for the exit button</param>
         public MainMenu(PassObject PLAYCLICKDEL, PassObject SETTINGCLICKDEL, PassObject EXITCLICKDEL) 
         {
             PlayClickDel = PLAYCLICKDEL;
