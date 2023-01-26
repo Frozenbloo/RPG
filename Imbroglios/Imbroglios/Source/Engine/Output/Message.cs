@@ -27,6 +27,16 @@ namespace Imbroglios
 
 		public TBTimer messageDuration;
 
+		/// <summary>
+		/// Creates a new instance of the message type
+		/// </summary>
+		/// <param name="POS">The message position</param>
+		/// <param name="DIMS">The dimensions of the item</param>
+		/// <param name="MSG">The message to display</param>
+		/// <param name="DUR">The duration it appears on screen</param>
+		/// <param name="COLOR">The colour</param>
+		/// <param name="LOCK">If it locks the screen, stopping the user from passing any input</param>
+		/// <param name="BACKGROUND">The text background</param>
 		public Message(Vector2 POS, Vector2 DIMS, string MSG, int DUR, Color COLOR, bool LOCK, Basic2D BACKGROUND) 
 		{
 			this.position = POS;

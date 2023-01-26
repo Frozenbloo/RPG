@@ -21,7 +21,10 @@ namespace Imbroglios
         protected int mSec;
         protected TimeSpan timer = new TimeSpan();
         
-
+        /// <summary>
+        /// Creates a new timer
+        /// </summary>
+        /// <param name="m">The time in miliseconds</param>
         public TBTimer(int m)
         {
             goodToGo = false;

@@ -26,13 +26,22 @@ namespace Imbroglios
 
 		public List<string> splitText = new List<string>();
 
-		public TextBox(Vector2 POS, string STR, int MAXWIDTH, int LINEHEIGHT, string FONT, Color FONTCOLOR)
+		/// <summary>
+		/// Creates a new Text Box
+		/// </summary>
+		/// <param name="POS">The text box location</param>
+		/// <param name="STR">The text</param>
+		/// <param name="MAXWIDTH">The maximum width the text can stretch to</param>
+		/// <param name="LINEHEIGHT">The line height</param>
+		/// <param name="FONT">The string to the font location</param>
+		/// <param name="FONTCOLOUR">The font colour</param>
+		public TextBox(Vector2 POS, string STR, int MAXWIDTH, int LINEHEIGHT, string FONT, Color FONTCOLOUR)
 		{
 			this.position = POS;
 			this.maxWidth = MAXWIDTH;
 			this.lineHeight = LINEHEIGHT;
 			this.text = STR;
-			this.fontColour = FONTCOLOR;
+			this.fontColour = FONTCOLOUR;
 
 			font = Globals.content.Load<SpriteFont>(FONT);
 
@@ -54,6 +63,9 @@ namespace Imbroglios
 		}
 		#endregion
 
+		/// <summary>
+		/// Parses text to ensure it fits inside the dimensions of the text box
+		/// </summary>
 		public virtual void ParseText()
 		{
 			this.splitText.Clear();

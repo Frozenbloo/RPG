@@ -24,6 +24,12 @@ namespace Imbroglios
 
         public Color colour;
 
+        /// <summary>
+        /// Creates a new Quantity Display Bar
+        /// </summary>
+        /// <param name="DIMS">The dimensions of the bar</param>
+        /// <param name="BORDER">The border size of the bar</param>
+        /// <param name="COLOUR">The bar colour</param>
         public QuantityDisplayBar(Vector2 DIMS, int BORDER, Color COLOUR)
         {
             border = BORDER;
